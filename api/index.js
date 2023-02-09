@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const ctrlComment = require("../controller");
-const {uploadImage, upload, uploadFile} = require('../middlewars/uploadMiddlewars')
+const { upload, uploadFile} = require('../middlewars/uploadMiddlewars')
 
 router.get("/", ctrlComment.getComments);
 router.get("/reply", ctrlComment.getReplies);
@@ -12,7 +12,7 @@ router.post("/reply", ctrlComment.createReply);
 router.post(
   "/image",
   upload.single("file"),
-  uploadImage,
+  uploadFile,
   ctrlComment.createImage
 );
 router.post("/file",
