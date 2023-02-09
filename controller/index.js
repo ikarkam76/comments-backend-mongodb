@@ -6,9 +6,7 @@ const getComments = async (req, res, next) => {
     res.json({
       status: "success",
       code: 200,
-      data: {
-        comments: results,
-      },
+      result: results,
     });
   } catch (e) {
     console.error(e);
@@ -22,9 +20,7 @@ const getReplies = async (req, res, next) => {
     res.json({
       status: "success",
       code: 200,
-      data: {
-        replies: results,
-      },
+      result: results,
     });
   } catch (e) {
     console.error(e);
@@ -38,9 +34,7 @@ const getImages = async (req, res, next) => {
     res.json({
       status: "success",
       code: 200,
-      data: {
-        images: results,
-      },
+      result: results,
     });
   } catch (e) {
     console.error(e);
@@ -78,10 +72,40 @@ const createReply = async (req, res, next) => {
   }
 };
 
+const createImage = async (req, res, next) => {
+  try {
+    const result = await service.createNewImage({image: req.downloadURL, parentId: req.body.parentId })
+    res.status(201).json({
+      status: "success",
+      code: 201,
+      data: { image: result },
+    });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+}
+
+const createFile = async (req, res, next) => {
+  try {
+    const result = await service.createNewFile({ file: req.downloadURL, parentId: req.body.parentId });
+    res.status(201).json({
+      status: "success",
+      code: 201,
+      data: { file: result },
+    });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+};
+
 module.exports = {
   getComments,
   getImages,
   getReplies,
   createComment,
-  createReply
+  createReply,
+  createImage,
+  createFile
 }

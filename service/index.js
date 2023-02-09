@@ -23,10 +23,20 @@ const createNewReply = async (reply) => {
     return Reply.create(reply)
 }
 
+const createNewImage = async (file) => {
+    return Image.create(file)
+}
+
+const createNewFile = async (file) => {
+    return File.create(file)
+}
+
 module.exports = {
     getAllcomments,
     getAllimages,
     getAllreplies,
     createNewComment,
-    createNewReply
+    createNewReply,
+    createNewImage,
+    createNewFile
 }

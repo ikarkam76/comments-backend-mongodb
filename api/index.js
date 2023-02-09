@@ -1,14 +1,24 @@
 const express = require("express");
 const router = express.Router();
-const ctrlTask = require("../controller");
+const ctrlComment = require("../controller");
+const {uploadImage, upload, uploadFile} = require('../middlewars/uploadMiddlewars')
 
-router.get("/", ctrlTask.getComments);
-router.get("/reply", ctrlTask.getReplies);
-router.get("/images", ctrlTask.getImages);
+router.get("/", ctrlComment.getComments);
+router.get("/reply", ctrlComment.getReplies);
+router.get("/images", ctrlComment.getImages);
 
-router.post("/", ctrlTask.createComment);
-router.post("/reply", ctrlTask.createReply);
-// router.post("/image", ctrlTask.createImage);
-// router.post("/file", ctrlTask.createFile);
+router.post("/", ctrlComment.createComment);
+router.post("/reply", ctrlComment.createReply);
+router.post(
+  "/image",
+  upload.single("file"),
+  uploadImage,
+  ctrlComment.createImage
+);
+router.post("/file",
+    upload.single('file'),
+    uploadFile,
+    ctrlComment.createFile);
 
 module.exports = router;
+

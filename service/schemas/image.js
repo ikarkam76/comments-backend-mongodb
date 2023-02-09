@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const image = new Schema({
-  parent_id: {
+  parentId: {
     type: String,
     required: true,
   },

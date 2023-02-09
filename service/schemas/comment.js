@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const comment = new Schema({
+  id: {
+    type: String,
+  },
   user_name: {
     type: String,
     required: [true, "Name is required"],

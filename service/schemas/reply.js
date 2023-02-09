@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reply = new Schema({
-  parent_id: {
+  parentId: {
     type: String,
     required: true,
   },
@@ -18,7 +18,7 @@ const reply = new Schema({
     type: String,
     required: false,
   },
-  reply: {
+  comment: {
     type: String,
     required: [true, "Definitely write something!"],
   },
