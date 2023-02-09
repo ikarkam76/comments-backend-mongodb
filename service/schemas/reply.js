@@ -28,6 +28,6 @@ const reply = new Schema({
   },
 });
 
-const Reply = mongoose.model('reply', reply);
+const Reply = mongoose.model('replies', reply);
 
 module.exports = Reply;
